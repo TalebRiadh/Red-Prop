@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+               <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+        <!-- UIkit CSS -->
+        <link rel="shortcut icon" type="image/x-png" href="{{asset('images/logos/logo.png')}}">
+
+        <link rel="stylesheet" href="{{asset('css/responsive.css')}}" />
+        <link rel="stylesheet" href="{{asset('css/ui.css.map')}}" />
+        <link rel="stylesheet" href="{{asset('css/dashboard.css')}}" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/css/uikit.min.css" />
+        <script src="{{ asset('js/uikit.min.js') }}"></script>
+        <script src="{{ asset('js/uikit-icons.min.js') }}"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">        <link rel="stylesheet" href="{{asset('css/tagsinput.css')}}" />
+        <link rel="stylesheet" href="{{asset('css/util.css')}}" />
+        {{ encore_entry_link_tags('app') }}
+
+        <script src="{{ asset('js/fontawsome.js') }}"></script>
+        <script src="{{ asset('js/moment.min.js') }}"></script>
+        {% block stylesheets %}
+    
+        {% endblock %}
+    </head>
+    <body class="bg-light" >
+     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="{{path('home')}}">
+    <img class="d-block mx-auto" src="{{asset('images/logos/logodashboard.png')}}" alt="" width="150" height="100">
+  </a>
+  <ul class="navbar-nav px-3">
+    <li class="nav-item text-nowrap">
+      <a class="nav-link" href="{{ path('logout') }}">Deconnexion</a>
+    </li>
+  </ul>
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-white sidebar">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link " href="#">
+                            <span data-feather="home"></span><b> Dashboard </b> <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if current==1 %}active{% endif %}" href="{{path('showOrders')}}">
+                            <i class="fas fa-shopping-cart"></i> Commandes
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if current==2 %}active{% endif %}" href="{{path('showProducts')}}">
+                            <span data-feather="shopping-cart"></span>
+                            <i class="fas fa-shopping-basket"></i> Produits
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if current==3 %}active{% endif %}" href="{{path('showClients')}}">
+                            <i class="fas fa-users"></i> Clients
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if current==4 %}active{% endif %}" href="{{path('stateProducts')}}">
+                            <i class="fas fa-toggle-on"></i> Disponibilité des produits
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if current==5 %}active{% endif %}" href="{{ path('categorySetting') }}">
+                            <i class="fas fa-coins"></i>
+                             Catégories
+                        </a>
+                    </li>
+                </ul>
+
+                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                        <span>Prochainement</span>
+                        <a class="d-flex align-items-center text-muted" href="#">
+                            <span data-feather="plus-circle"></span>
+                        </a>
+                    </h6>
+                <ul class="nav flex-column mb-2">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-archive"></i> Archive
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-info-circle"></i> Informations
+                        </a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-chart-line"></i> Statistiques
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        {% block body %}{% endblock %}
+    </div>
+    </div>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+     <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+                        {{ encore_entry_script_tags('js/uploadPreview') }}
+
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        {{ encore_entry_script_tags('js/main') }}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+                    {% endblock %}
+    </body>
+</html>

@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %} {% block title 'Modifier le Client' %} {% block stylesheets %} {% endblock %} {% block body %}
+
+
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+
+<div class="container m-t-150">
+    {{ form_start(form) }}
+    <div class="form-group">
+        <div class="row">
+            <div class=" col col-md-6 col-xs-12 col-s-12">
+                {{ form_row(form.firstname,{'label':'Nom'}) }}
+            </div>
+            <div class=" col col-md-6 col-xs-12 col-s-12">
+                {{ form_row(form.lastname,{'label':'Prénom'}) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class=" col col-md-4 col-xs-12 col-s-12">
+                {{ form_row(form.email,{'label':'Email'}) }}
+            </div>
+            <div class=" col col-md-4 col-xs-12 col-s-12">
+                {{ form_row(form.phone,{'label':'Numéro de téléphone'}) }}
+            </div>
+            <div class=" col col-md-4 col-xs-12 col-s-12">
+                {{ form_row(form.birthdate,{'label':'Date de naissance'}) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class=" col col-md-6 col-xs-12 col-s-12">
+                {{ form_row(form.password,{'label':'Mot de passe'}) }}
+            </div>
+            <div class=" col col-md-6 col-xs-12 col-s-12">
+                {{ form_row(form.confirm_password,{'label':'Confirmer le Mot de passe'}) }}
+            </div>
+            
+        </div>
+
+        {{ form_rest(form) }}
+
+        <button id="edit_btn" class="btn btn-primary">{{ button|default('Modifier') }}</button>
+        {{ form_end(form) }}
+    </div>
+         </div>
+
+        </main>
+
+
+
+        {% endblock %} {% block javascripts %} {% endblock %}

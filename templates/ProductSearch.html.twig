@@ -1,0 +1,44 @@
+{% extends 'security/home.html.twig' %}
+{% block title 'Liste des Produits' %} {% block stylesheets %} {% endblock %} {% block body %}
+
+
+    <section class="section-content bg padding-y-sm">
+        <div class="container">
+            <div class="padding-y-sm">
+                <h3><b class="white">{{resultats}} Results </b></h3>
+            </div>
+
+            {% if product  is not null  %}
+            <div class="row-sm">
+                    <div class="col-md-3 col-sm-6">
+                        <figure class="card card-product">
+                            {% if product.state ==0  %}
+                                <span class="badge-new " id="non-dispo"> Not available
+ </span>
+                            {% endif %}
+                            <a  href="{{ path('productPage',{id: product.id}) }}">
+                                <div class="img-wrap">
+                                    <img src="{{ vich_uploader_asset(product,'imageFile')| imagine_filter('product_list') }}" style="width: 100%;">
+                                </div>
+                            </a>
+                            <figcaption class="info-wrap text-center">
+                                <h6 class="title text-truncate">
+                                    <b>
+                                        <a class="color_text"  href="{{ path('productPage',{id: product.id}) }}">
+                                            {{product.name}}
+                                        </a>
+                                    </b>
+                                </h6>
+                            </figcaption>
+                        </figure>
+                        <!-- card // -->
+                    </div>
+            </div>
+            {% endif %}
+            <!-- row.// -->
+
+        </div>
+        <!-- container // -->
+    </section>
+
+{% endblock %} {% block javascripts %} {% endblock %}

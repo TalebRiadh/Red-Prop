@@ -1,0 +1,43 @@
+
+liip_imagine:
+    # valid drivers options include "gd" or "gmagick" or "imagick"
+    driver: "gd"
+    filter_sets:
+        squared_thumbnail:
+            jpeg_quality:          100
+            png_compression_level: 10
+
+            # setup the filter steps to apply for this transformation
+            filters:
+                thumbnail:
+                    size:          [750, 360]
+                    allow_upscale: true
+        product_list:
+            jpeg_quality:          100
+            png_compression_level: 8
+
+            # setup the filter steps to apply for this transformation
+            filters:
+                thumbnail:
+                    size:          [204, 220]
+                    mode:          outbound
+                    allow_upscale: true            
+        product_thumb_page:
+            jpeg_quality:          100
+            png_compression_level: 10
+            filters:
+                thumbnail:
+                    size:          [554, 460]
+                    mode:          outbound
+                    allow_upscale: true  
+                    
+        product_thumb_basket:
+            jpeg_quality:          100
+            png_compression_level: 10
+
+            # setup the filter steps to apply for this transformation
+            filters:
+                thumbnail:
+                    size:          [127, 137]
+                    mode:          outbound
+                    allow_upscale: true              

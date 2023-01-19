@@ -1,0 +1,279 @@
+.checkbox {
+    width: 50px
+}
+
+
+.img-slide {
+    width: 100%;
+    height: 500px;
+}
+
+#image-preview {
+    width: 90%;
+    height: 450px;
+    position: relative;
+    overflow: hidden;
+    background-color: #ffffff;
+    color: #ecf0f1;
+}
+
+.rounded-circle{
+    width:300px;
+    height: 300px;
+}
+#image-preview input {
+    line-height: 200px;
+    font-size: 200px;
+    position: absolute;
+    opacity: 0;
+    z-index: 10;
+}
+
+.inline {
+    display: inline-block;
+}
+
+html {
+    background-color: #f8f9fa;
+    font-family: "Montserrat Alternates SemiBold";
+}
+
+.card {
+    background-color: rgba(255, 255, 255, .8);
+}
+
+.bg {
+    background-image: url("/images/bg/bg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+#non-dispo {
+    background-color: red;
+}
+
+#btn-add-product {
+    background-color: #3d5290;
+}
+
+#btn-add-category {
+    background-color: #3d5290;
+}
+
+.btn-add {
+    background-color: #3d5290;
+}
+
+.color_text {
+    color: #3d5290;
+}
+
+.img-wrap {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+/*------------- contact page --------------*/
+#mapid {
+    height: 350px;
+    border: 1px solid white;
+
+}
+
+/*-----------------------------------------*/
+a:hover,
+a:focus {
+    text-decoration: none;
+}
+
+#image-preview label {
+    position: absolute;
+    z-index: 5;
+    opacity: 0.8;
+    cursor: pointer;
+    background-color: #bdc3c7;
+    width: 200px;
+    height: 50px;
+    font-size: 20px;
+    line-height: 50px;
+    text-transform: uppercase;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    text-align: center;
+}
+
+.titleprghp {
+    background: linear-gradient(90deg, #4B79A1 0%, #3d5290 100%);
+    margin: 20px 0 20px;
+    height: 46px;
+    border-radius: 50px;
+
+
+}
+
+@media (min-width: 960px) {
+    #disponible {
+        margin-left: -25px;
+    }
+}
+
+.prg {
+    color: white;
+    font-size: 23px;
+    padding: 0 0 0 10px;
+    line-height: 45px;
+
+}
+
+
+.switchToggle input[type=checkbox] {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+    position: absolute;
+}
+
+.switchToggle label {
+    cursor: pointer;
+    text-indent: -9999px;
+    width: 130px;
+    max-width: 130px;
+    height: 30px;
+    margin-top: 8px;
+    background: #E51F1F;
+    display: block;
+    border-radius: 100px;
+    position: relative;
+}
+
+.switchToggle label:after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 26px;
+    height: 26px;
+    background: #fff;
+    border-radius: 90px;
+    transition: 0.3s;
+}
+
+.switchToggle input:checked+label,
+.switchToggle input:checked+input+label {
+    background: #2F7336;
+}
+
+.switchToggle input+label:before,
+.switchToggle input+input+label:before {
+    content: 'Indisponible';
+    position: absolute;
+    top: 2px;
+    left: 35px;
+    width: 26px;
+    height: 26px;
+    border-radius: 90px;
+    transition: 0.3s;
+    text-indent: 0;
+    color: #fff;
+}
+
+#tags {
+    cursor: pointer;
+
+}
+
+.switchToggle input:checked+label:before,
+.switchToggle input:checked+input+label:before {
+    content: 'Disponible';
+    position: absolute;
+    top: 2px;
+    left: 14px;
+    width: 26px;
+    height: 26px;
+    border-radius: 90px;
+    transition: 0.3s;
+    text-indent: 0;
+    color: #fff;
+}
+
+.switchToggle input:checked+label:after,
+.switchToggle input:checked+input+label:after {
+    left: calc(100% - 2px);
+    transform: translateX(-100%);
+}
+
+.switchToggle label:active:after {
+    width: 60px;
+}
+
+.toggle-switchArea {
+    margin: 10px 0 10px 0;
+}
+
+.btn btn-default {
+    border-radius: 0;
+    -webkit-border-radius: 0px !important;
+    -moz-border-radius: 0px !important;
+}
+
+#edit_btn {
+    background-color: #3d5290
+}
+
+#edit_btn:hover {
+    background-color: #30417A
+}
+
+/*-----------------------------------------------------*/
+
+.param {
+    margin-bottom: 7px;
+    line-height: 1.4;
+}
+
+.param-inline dt {
+    display: inline-block;
+}
+
+.param dt {
+    margin: 0;
+    margin-right: 7px;
+    font-weight: 600;
+}
+
+.param-inline dd {
+    vertical-align: baseline;
+    display: inline-block;
+}
+
+.param dd {
+    margin: 0;
+    vertical-align: baseline;
+}
+
+.shopping-cart-wrap .price {
+    color: #007bff;
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 5px;
+    display: block;
+}
+
+var {
+    font-style: normal;
+}
+
+.media img {
+    margin-right: 1rem;
+}
+
+.img-sm {
+    width: 90px;
+    max-height: 100px;
+    object-fit: cover;
+}

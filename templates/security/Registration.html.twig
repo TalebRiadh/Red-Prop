@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Inscription</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" type="image/x-png" href="{{asset('images/logos/logo.png')}}">
+	<!--===============================================================================================-->
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<!--===============================================================================================-->
+</head>
+
+<body>
+
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
+				<img class="d-block mx-auto mb-4" src="{{asset('images/logos/logo.png')}}" alt="" width="300" height="100">
+                    {{ form_start(form, { 'attr' : { 'class': 'login100-form validate-form' } }) }}
+					<span class="login100-form-title p-b-20 p-t-55">
+						Inscription
+					</span>
+
+					<div class="wrap-input100 validate-input m-b-16">
+                        {{ form_widget(form.firstname,  {'attr': {'class': 'input100','placeholder':'Nom'}}) }}
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+                            <span class="lnr lnr-user"></span>
+						</span>
+					</div>
+                    <div class="form-error mb-5">
+                            {{ form_errors(form.firstname) }}
+                    </div>
+                    <div class="wrap-input100 validate-input m-b-16" >
+                        {{ form_widget(form.lastname,  {'attr': {'class': 'input100','placeholder':'Prénom'}}) }}
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+                            <span class="lnr lnr-user"></span>
+						</span>
+					</div>
+                    <div class="form-error mb-5">
+                            {{ form_errors(form.lastname) }}
+                    </div>
+					<div class="wrap-input100 validate-input m-b-16" >
+                        {{ form_widget(form.phone,  {'attr': {'class': 'input100','placeholder':'Numéro de telephone'}}) }}
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<span class="lnr lnr-phone-handset"></span>
+						</span>
+					</div>
+                    <div class="form-error mb-5">
+                            {{ form_errors(form.phone) }}
+                    </div>
+					<div class="wrap-input100 validate-input m-b-16" >
+                        {{ form_widget(form.birthdate,  {'attr': {'class': 'input100','placeholder':'date de naissance'}}) }}
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<span class="lnr lnr-calendar-full"></span>
+						</span>
+					</div>
+                    <div class="form-error mb-5">
+                            {{ form_errors(form.birthdate) }}
+                    </div>
+                    <div class="wrap-input100 validate-input m-b-16" >
+                        {{ form_widget(form.email,  {'attr': {'class': 'input100','placeholder':'Email'}}) }}
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<span class="lnr lnr-envelope"></span>
+						</span>
+					</div>
+                    <div class="form-error mb-5">
+                            {{ form_errors(form.email) }}
+                        </div>
+                    <div class="wrap-input100 validate-input m-b-16" >
+                        {{ form_widget(form.password,  {'attr': {'class': 'input100','placeholder':'Mot de Passe'}}) }}
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<span class="lnr lnr-lock"></span>
+						</span>
+					</div>
+                    <div class="form-error mb-5">
+                            {{ form_errors(form.password) }}
+                        </div>
+                    <div class="wrap-input100 validate-input m-b-16" >
+                        {{ form_widget(form.confirm_password,  {'attr': {'class': 'input100','placeholder':'Confirmé Mot de Passe'}}) }}
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<span class="lnr lnr-lock"></span>
+						</span>
+					</div>
+                        <div class="form-error">
+                            {{ form_errors(form.confirm_password) }}
+                        </div>
+					<div class="container-login100-form-btn p-t-25">
+						<button type="submit" class="login100-form-btn">
+							Créer Le Compte
+						</button>
+					</div>	
+                    {{ form_end(form) }}
+				</div>
+		</div>
+	</div>
+	<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="js/login.js"></script>
+
+</body>
+
+</html>

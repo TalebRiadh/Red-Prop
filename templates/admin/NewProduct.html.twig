@@ -1,0 +1,145 @@
+{% extends 'base.html.twig' %} {% block title 'Nouveau Produit' %} {% block stylesheets %} {% endblock %} {% block body %}
+
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+
+<div class="container">
+    <div class="py-5 text-center" style="margin:-20px;">
+        <img class="d-block mx-auto mb-4" src="{{asset('images/logos/logo1.png')}}" alt="" width="300" height="100">
+        <hr>
+        <h2>Ajouter Un Produit</h2>
+        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ac massa eget velit sagittis sodales. Curabitur varius facilisis interdum. Nunc velit arcu, auctor hendrerit orci et, vulputate lacinia leo. Aenean non posuere libero. </p>
+    </div>
+    <div class="col-lg-12">
+        <div class="tableaudebord">
+            <div class='container'>
+                {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+                <div class="row justify-content-between titleprghp">
+                    <div class="col-4 col-s-4 ">
+                        <div class="">
+                            <span class="prg">Essentiel Informations</span>
+                        </div>
+                    </div>
+                    <div class="col-8 col-lg-2 col-md-4 col-s-4 ">
+                        <div id="disponible" class="form-group">
+                            {{ form_label(form.state, "Disponible:", {'label_attr': {'class': "col-sm-2 control-label"}}) }}
+                            <div class="col-sm-8">
+                                <div class="outerDivFull">
+                                    <div class="switchToggle">
+                                        {{ form_widget(form.state, {'id': 'switch'}) }}
+                                    </div>
+                                </div>
+                            </div>
+                            {{ form_errors(form.state) }}
+                        </div>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class="col-lg-7">
+                        <div class="form-group">
+                            {{ form_label(form.name, "Nom:", {'label_attr': {'class': "col-sm-2 control-label"}}) }}
+                            <div class="col-sm-8">
+                                {{ form_widget(form.name, {'attr': {'class': ''}}) }}
+                            </div>
+                            {{ form_errors(form.name) }}
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    {{ form_label(form.category, "Categorie:", {'label_attr': {'class': "control-label"}}) }}
+                                    <div class="form-group">
+                                        {{ form_widget(form.category, {'attr': {'class': ''}}) }} {{ form_errors(form.category) }}
+                                    <a  data-toggle="modal" data-target="#exampleModal">
+                                        *Ajouter Une Catégorie
+                                    </a>
+                                    </div>
+                                    
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        {{ form_label(form.measurement, "Mesure:", {'label_attr': {'class': " control-label"}}) }} {{ form_widget(form.measurement, {'attr': {'class': ''}}) }} {{ form_errors(form.measurement) }}
+                                    </div>
+                                </div>
+                                 
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.Discription, "Discription:", {'label_attr': {'class': "col-sm-2 control-label"}}) }}
+                            <div class="col-sm-8">
+                                {{ form_widget(form.Discription, {'attr': {'class': ''}}) }}
+                            </div>
+                            {{ form_errors(form.Discription) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.price, "Prix:", {'label_attr': {'class': "col-sm-2 control-label"}}) }}
+                            <div class="col-sm-8">
+                                <div class="input-group mb-3">
+                                    {{ form_widget(form.price, {'attr': {'class': ''}}) }}
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.quantity, "Quantité:", {'label_attr': {'class': "col-sm-2 control-label"}}) }}
+                            <div class="col-sm-8">
+                                <div class="input-group mb-3">
+                                    {{ form_widget(form.quantity, {'attr': {'class': ''}}) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <label>Image:</label>
+                        <div id="image-preview">
+                            {{ form_label(form.imageFile, "Choisir Une Image:", {'label_attr':{'id':"image-label"}}) }} {{ form_widget(form.imageFile, {'id':"image-upload"}) }}
+                        </div>
+                        {{ form_errors(form.imageFile) }}
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="boutton">
+                            <div class="col-lg-7 col-md-7 hidden-md hidden-xs"></div>
+                            <div class="col-lg-3 col-lg-offset-1 col-md-3 col-md-offset-1 col-xs-12">
+                                {{ form_rest(form) }}
+                                <button id="btn-add-product" class="btn btn-primary"><i class="fas fa-plus-circle" style="padding-right:10px;"></i>{{ button|default('Ajouter Le Produit') }}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+</div>
+
+                </div>
+
+        </main>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nouvelle Catégorie</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+                        {{ form_start(form_category, {'attr': {'class': 'form-horizontal'}}) }}     
+                        {{form_row(form_category.name)}}  
+                        {{ form_end(form_category) }}            
+      </div>
+      <div class="modal-footer">
+         <button id="btn-add-category"  class="btn btn-primary"><i class="fas fa-plus-circle" style="padding-right:10px;"></i>{{ button|default('Ajouter Le Catégorie') }}</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %} {% block javascripts %} {% endblock %}

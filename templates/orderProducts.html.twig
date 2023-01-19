@@ -1,0 +1,356 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Command{% endblock %}</title>
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{asset('css/responsive.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/ui.css')}}" />
+    <link rel="stylesheet" href="{{ asset('css/uikit.min.css') }}" />
+    <script src="{{ asset('js/uikit.min.js') }}"></script>
+    <link rel="stylesheet" href="{{asset('css/util.css')}}" />
+    <link rel="stylesheet" href=" {{ asset('vendor/leaflet/leaflet.css') }}"/>    <!-- Make sure you put this AFTER Leaflet's CSS -->
+
+    <link rel="shortcut icon" type="image/x-png" href="{{asset('images/logos/logo.png')}}">
+    <link href="{{asset('css/owl.carousel.min.css')}}" rel="stylesheet">
+    <link href="{{asset('css/owl.theme.default.css')}}" rel="stylesheet">
+    <link href="{{asset('plugins/slickslider/slick.css')}}" rel="stylesheet">
+    <link href="{{asset('plugins/slickslider/slick-theme.css')}}" rel="stylesheet">
+    {{ encore_entry_link_tags('app') }}
+
+
+    <script src="{{ asset('js/fontawsome.js') }}"></script>
+    <script src="{{ asset('js/moment.min.js') }}"></script>
+    {% block stylesheets %}
+
+    {% endblock %}
+</head>
+<body>
+
+<header class="section-header">
+    <nav class="navbar navbar-top navbar-expand-lg" style=" background-color:#3d5290;">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTop" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTop">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link white"  role="button" aria-disabled="true" href="#"> <i class="fa fa-phone"></i> Call-US:  +213(0) 699-01-11-49 </a>
+                    </li>
+                </ul>
+                <!-- list-inline //  -->
+            </div>
+            <!-- navbar-collapse .// -->
+        </div>
+        <!-- container //  -->
+    </nav>
+
+    <section class="header-main">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5-24 col-sm-5 col-4">
+                    <div class="brand-wrap">
+                        <a href="{{ path('home') }}">
+                            <img class="logo container" src="{{asset('images/logos/logo1.png')}}">
+                        </a>
+                    </div>
+                    <!-- brand-wrap.// -->
+                </div>
+                <div class="col-lg-11-24 col-sm-12 order-3 order-lg-2">
+                    <form role="search" method="post" action="{{ path('searchProduct') }}">
+                        <div class="input-group w-100">
+                            <input type="text" class="form-control" name="search" style="width:60%;" placeholder="Rechercher">
+                            <div  class="input-group-append">
+                                <button style="background-color:#3d5290;" class="btn btn-primary" name="sub" type="submit">
+                                    <i  class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- search-wrap .end// -->
+                </div>
+                <!-- col.// -->
+                <div class="col-lg-8-24 col-sm-7 col-8  order-2  order-lg-3">
+                    <div class="d-flex justify-content-end">
+                        <div class="widget-header">
+                            <small class="title text-muted">Welcome !</small>
+                            {% if app.user %}
+                                <span><b>
+                                            {% if app.user.getRole() == 1 %}
+                                                <a style="color:#3d5290;" href="{{path('showProducts')}}"><i class="fas fa-tools"></i></a>
+                                            {% endif %}
+
+                                        {{app.user.firstname}}</b> {{app.user.lastname}} <a style="color:#3d5290;" href="{{path('logout')}}"><i class="fas fa-sign-out-alt"></i></a></span>
+                            {% else %}
+                                <div>
+                                    <a href="{{path('connexion')}}">Sign in
+                                    </a> <span class="dark-transp"> | </span>
+                                    <a href="{{path('security_registration')}}">Sign Up</a>
+                                </div>
+                            {% endif %}
+
+                        </div>
+                        {% if app.user %}
+
+                            <a data-toggle="modal" data-target="#exampleModalCenter" class="widget-header border-left pl-3 ml-3">
+                                <div class="icontext">
+                                    <div  class="icon-wrap icon-sm round border"><i style="color:#3d5290;" class="fa fa-shopping-cart"></i></div>
+                                </div>
+                                <span class="badge badge-pill badge-danger notify">{{ nbrProductOnBasket }}</span>
+                            </a>
+                            <a  href="{{path('Order')}}"  class="widget-header border-left pl-3 ml-3">
+                                <div class="icontext">
+                                    <div  class="icon-wrap icon-sm round border"><i style="color:#3d5290;" class="fa fa-cash-register"></i></div>
+                                </div>
+                            </a>
+
+                        {% endif %}
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModalCenter" data-toggle="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel"><strong>Your basket
+                                                :</strong></h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th style="text-align: center; vertical-align: middle;" scope="col">#</th>
+                                                <th style="text-align: center; vertical-align: middle;" scope="col">Image</th>
+                                                <th style="text-align: center; vertical-align: middle;" scope="col">Produit</th>
+                                                <th style="text-align: center; vertical-align: middle;" scope="col"> </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% if app.user != null %}
+                                                {% for product in app.user.basket.products.toArray() %}
+                                                    <tr>
+                                                        <th style="text-align: center; vertical-align: middle;" scope="row">{{product.code}}</th>
+                                                        <td style="text-align: center; vertical-align: middle;">
+                                                            <img class="shadow p-3 img-fluid bg-white rounded" src="{{ vich_uploader_asset(product,'imageFile') }}" alt="" style=" width: 150px; height: 120px;max-width: 100%;">
+                                                        </td>
+                                                        <td style="text-align: center; vertical-align: middle;">{{product.name}}</td>
+                                                        <td style="text-align: center; vertical-align: middle;">
+                                                            <button type="button" id="btn_sup_product_f_basket" class="btn btn-sm btn-outline-danger"> × Remove</button>
+                                                        </td>
+                                                    </tr>
+                                                {% endfor %}
+                                            {% endif %}
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- widgets-wrap.// -->
+                </div>
+                <!-- col.// -->
+            </div>
+            <!-- row.// -->
+        </div>
+        <!-- container.// -->
+    </section>
+    <!-- header-main .// -->
+</header>
+<!-- section-header.// -->
+
+
+
+
+
+{% block body %}
+    <section class="section-content  padding-y border-top">
+        <div class="container">
+            <br>
+            <hr>
+            <div class="row">
+                <main class="col-sm-9">
+                    <div class="card">
+                        <table class="table table-hover shopping-cart-wrap">
+                            <thead class="text-muted">
+                            <tr>
+                                <th style="text-align: center; vertical-align: middle;" scope="col">Product</th>
+                                <th style="text-align: center; vertical-align: middle;" scope="col" width="120">Quantity</th>
+                                <th style="text-align: center; vertical-align: middle;" scope="col" width="140">Price</th>
+                                <th style="text-align: center; vertical-align: middle;" scope="col" width="200">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for product in products %}
+                                <tr class="product">
+                                    <td style="text-align: center; vertical-align: middle;">
+                                        <figure class="media">
+                                            <div class="img-wrap"><img src="{{ vich_uploader_asset(product,'imageFile') }}" class="img-thumbnail img-sm"></div>
+                                            <figcaption class="media-body">
+                                                <h6 class="title text-truncate product_name">{{product.name}}</h6>
+                                                <dl class="param param-inline small">
+                                                    <dt>measured: </dt>
+                                                    <dd>{{product.measurement}}</dd>
+                                                </dl>
+                                                <dl class="param param-inline small">
+                                                    <dt>quantity available : </dt>
+                                                    <dd>{{product.quantity}}</dd>
+                                                </dl>
+                                                <dl class="param param-inline small">
+                                                    <dt>Reference: </dt>
+                                                    <dd id="code_product">{{product.code}}</dd>
+                                                </dl>
+                                            </figcaption>
+                                        </figure>
+                                    </td>
+                                    <td style="text-align: center; vertical-align: middle;">
+                                        <input type="number"
+
+                                               class="quantity form-control" id="Ultra" value="1"   max="{{product.quantity}}" />
+
+                                    </td>
+                                    <td class="price_td" style="text-align: center; vertical-align: middle;">
+                                        <div class="price-wrap">
+                                            <span class="price" style="display:none;">{{product.price}}</span>
+                                            <var class="price_t">{{product.price}}</var><br>
+                                            <small class="text-muted" data-toggle="tooltip" data-placement="bottom" title="{{product.price}} $/{{product.measurement}}">Dinar DZD*</small>
+                                        </div>
+                                        <!-- price-wrap .// -->
+                                    </td>
+                                    <td class="td_action" style="text-align: center; vertical-align: middle;">
+                                        <button  type="button" id="btn_sup_product" class="btn btn-outline-danger"> × Remove</button>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- card.// -->
+                </main>
+                <!-- col.// -->
+                <aside class="col-sm-3">
+                    <p class="alert alert-success"><b>TsaR Systèm</b> consiste à générer un Code unique pour chaque commande a fin de facilité la pursuit de l'achat quand la presentation chez nous </p>
+                    <dl class="dlist-align">
+                        <dt>Client: </dt>
+                        <dd class="text-right" style="display:none" ><p id="email_client">{{app.user.email}}</p></dd>
+                        <dd class="text-right"><span>{{app.user.firstname}} {{app.user.lastname}}</span></dd>
+                    </dl>
+                    <dl class="dlist-align">
+                        <dt>Date:</dt>
+                        <b><dd class="text-right" id="date">1998-10-13</dd></b>
+                    </dl>
+                    <dl class="dlist-align h4">
+                        <dt>Total:</dt>
+                        <dd class="text-right"><small class="price_total">000.00 </small> Da</dd>
+                    </dl>
+                    <dd class="dlist-align ">
+                        <span>*doesn't include price of delivery</span>
+                    </dd>
+                    <hr>
+                    <figure class="itemside mb-3">
+                        <div class="text-wrap small text-muted "  >
+                            <button   type="submit" style="position:absolute; right:0" data-toggle="modal" data-target="#test"  type="button" id="btn_order" class="btn btn-outline-success">Order</button>
+                        </div>
+                    </figure>
+
+                </aside>
+                <!-- col.// -->
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Modal -->
+    <div class="modal  fade" id="test" data-toggle="modal" tabindex="-1" id="modal" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">The command
+                        #<b id="ref"></b><span class="notvalid"> </span>
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <table id="newTable" class="table table-hover shopping-cart-wrap">
+                            <thead class="text-muted">
+                            <tr>
+                                <th style="text-align: center; vertical-align: middle;" scope="col" width="120">Product</th>
+                                <th style="text-align: center; vertical-align: middle;" scope="col" width="120">Quantity</th>
+                                <th style="text-align: center; vertical-align: middle;" scope="col" width="140">Price</th>
+                            </tr>
+                            </thead>
+                            <tbody class="bodytable">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+
+<footer class="pt-4 mt-5 my-md-5 pt-md-5 border-top container ">
+    <div class="row">
+        <div class="col-12 col-md">
+            <img class="mb-2" src="{{ asset('images/logos/logo.png') }}" alt="" width="150" height="120">
+            <small class="d-block mb-3 text-muted">&copy; 2018-2019</small>
+        </div>
+        <div class="col-6 col-md">
+            <h5>Menu</h5>
+            <ul class="list-unstyled text-small">
+                <li><a class="text-muted" href="{{ path('home') }}">Home</a></li>
+                <li><a class="text-muted" href="{{ path('category') }}">Catégories</a></li>
+                <li><a class="text-muted" href="{{ path('NewProducts') }}">Latest Products
+                    </a></li>
+                <li><a class="text-muted" href="{{ path('aboutUs') }}">About Us</a></li>
+                <li><a class="text-muted" href="{{ path('contact') }}">Contact</a></li>
+            </ul>
+        </div>
+        <div class="col-6 col-md">
+            <h5>How do we work?
+            </h5>
+            <ul class="list-unstyled text-small">
+                <li><a class="text-muted" href="#">Description</a></li>
+                <li><a class="text-muted" href="#">Rules</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="{{ asset('js/list.min.js') }}"></script>
+<script src="{{ asset('vendor/bootstrap/js/tooltip.js') }}"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="{{ asset('vendor/leaflet/leaflet.js') }}"></script>
+<script src="{{asset('js/owl.carousel.min.js')}}"></script>
+<script src="{{asset('js/script.js')}}" type="text/javascript"></script>
+<script src="{{asset('plugins/slickslider/slick.min.js')}}"></script>
+{{ encore_entry_script_tags('js/uploadPreview') }}
+{{ encore_entry_script_tags('js/main') }}
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
+</body>
+</html>

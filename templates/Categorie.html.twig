@@ -1,0 +1,56 @@
+{% extends 'security/home.html.twig' %} {% block title 'Red-Prop' %} {% block stylesheets %} {% endblock %} {% block body %}
+
+<article class="section-main bg padding-bottom pt-5 ">
+        <div class="container  ">
+            <div class="card-deck mb-3 text-center ">
+                <div class="row-sm">
+                    {% for category in categories %}
+                <div class="col-md-3 col-sm-6">
+
+                <div class="card mb-4 shadow-sm">
+                        <div class="card-header" style="background-image: url('/images/logos/legumes.jpg');
+                            " >
+                            <h4 class="my-0 font-weight-normal white">{{ category.name }}</h4>
+                        </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>
+                                {% if category.getProducts[0] is defined %}
+                                    {{ category.getProducts[0].name }}
+                                {% endif %}
+                            </li>
+                            <li>
+                                {% if category.getProducts[1] is defined %}
+                                    {{ category.getProducts[1].name }}
+                                {% endif %}
+                            </li>
+                            <li>
+                                {% if category.getProducts[2] is defined %}
+                                    {{ category.getProducts[2].name }}
+                                {% endif %}
+                            </li>
+                            <li>
+                                {% if category.getProducts[3] is defined %}
+                                    {{ category.getProducts[3].name }}
+                                {% endif %}
+                            </li>
+                            <li>
+                                {% if category.getProducts[4] is defined %}
+                                    {{ category.getProducts[4].name }}
+                                {% endif %}
+                            </li>
+                        </ul>
+                        <a  href="{{ path('listProductsByCategory',{id: category.id}) }}" role="button" class="btn btn-add white btn-block btn-outline-primary">Products List
+                        </a>
+                    </div>
+
+                </div>
+                </div>
+
+                    {% endfor %}
+                </div>
+
+            </div>
+        </div>
+</article>
+{% endblock %} {% block javascripts %} {% endblock %}

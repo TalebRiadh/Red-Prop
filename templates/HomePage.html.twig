@@ -1,0 +1,109 @@
+ {% extends 'security/home.html.twig' %} {% block title 'Red-Prop' %} {% block stylesheets %} {% endblock %} {% block body %}
+
+<!-- ========================= SECTION MAIN ========================= -->
+<article class="section-main bg padding-bottom">
+    <div class="container">
+        <div class="row no-gutters border border-top-0 bg-white">
+            <aside class="col-lg-5-24">
+                <nav>
+                    <div class="title-category  white d-none d-lg-block" style="margin-top:-56px; background-color:#3d5290;">
+                        <span>Categories</span>
+                    </div>
+                    <ul class="menu-category">
+                        {% for category in categories %}
+                        <li>
+                            <a class="color_text" href="{{ path('listProductsByCategory',{id: category.id}) }}">
+                                <b>
+                                    {{category.name}}
+                                </b>
+                            </a>
+
+
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </nav>
+            </aside>
+            <!-- col.// -->
+            <main class="col-lg-19-24">
+                <!-- ========= intro aside ========= -->
+                <div class="row no-gutters">
+                    <div class="col-lg-12 col-md-11">
+                        <!-- ================= main slide ================= -->
+
+                        <div class="owl-init slider-main owl-carousel" data-items="1" data-margin="1" data-nav="true" data-dots="false">
+                            <div class="item-slide" style="  height: 360px;max-width: 100%;">
+                                <img src="{{asset('images/slider/achievement-3387293_1920.png')}}" style=" height: auto; max-width: 100%;">
+                            </div>
+                            <div class="item-slide">
+                                <img src="{{asset('images/slider/business-3560932_1920.jpg')}}" style="  height: 360px;max-width: 100%;">
+                            </div>
+                            <div class="item-slide">
+                                <img src="{{asset('images/slider/reception-2507752_1920.jpg')}}" style="  height: auto;max-width: 100%;">
+                            </div>
+                        </div>
+
+                        <!-- ============== main slidesow .end // ============= -->
+                    </div>
+                    <!-- col.// -->
+                    <!-- col.// -->
+                </div>
+                <!-- row.// -->
+                <!-- ======== intro aside ========= .// -->
+            </main>
+            <!-- col.// -->
+        </div>
+        <!-- row.// -->
+        <article class="card mt-3">
+            <div class="card-body">
+        <h3 class="title-text">The Last Arrived
+        </h3>
+        <!-- ============== slick slide items  ============= -->
+        <div class="slick-slider" data-slick='{"slidesToShow": 5, "slidesToScroll": 1}'>
+            {% for product in productsDispo %} {% if loop.first %}
+            <div class="item-slide p-2">
+                <figure class="card card-product">
+                    <span class="badge-new"> New </span>
+                    <a  href="{{ path('productPage',{id: product.id}) }}">
+
+                    <div class="img-wrap"> <img src="{{ vich_uploader_asset(product,'imageFile')| imagine_filter('product_list') }}"> </div>
+                    </a>
+                        <figcaption class="info-wrap text-center">
+                        <h6 class="title text-truncate">
+                            <b><a class="color_text"  href="{{ path('productPage',{id: product.id}) }}">{{product.name}}</a></b>
+                        </h6>
+                    </figcaption>
+                </figure>
+                <!-- card // -->
+            </div>
+            {% else %}
+            <div class="item-slide p-2">
+
+                <figure class="card card-product">
+                    <a  href="{{ path('productPage',{id: product.id}) }}">
+
+                    <div class="img-wrap"> <img src="{{ vich_uploader_asset(product,'imageFile')|imagine_filter('product_list') }}"> </div>
+                    </a>
+                        <figcaption class="info-wrap text-center">
+                        <h6 class="title text-truncate">
+                            <b>
+                                <a class="color_text"  href="{{ path('productPage',{id: product.id}) }}">
+                                    {{product.name}}
+                                </a>
+                            </b>
+                            </h6>
+                    </figcaption>
+                </figure>
+                <!-- card // -->
+            </div>
+            {% endif %} {% endfor %}
+        </div>
+            </div>
+
+        </article>
+
+
+    </div>
+    <!-- container .//  -->
+</article>
+{% endblock %} {% block javascripts %} {% endblock %}

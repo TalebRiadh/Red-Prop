@@ -1,0 +1,121 @@
+ {% extends 'security/home.html.twig' %} {% block title 'Red-Prop' %} {% block stylesheets %} {% endblock %} {% block body %}
+<section class="section-content bg padding-y-sm">
+    <div class="container">
+
+        <nav class="mb-3">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a class="color_text" href="{{ path('home') }}">Accueil</a></li>
+                <li class="breadcrumb-item"><a class="color_text" href="{{ path('listProductsByCategory',{id: product.category.id}) }}">{{product.category.name}}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{product.name}}</li>
+                <p id="id_product" style="display: none ">{{ product.id }}</p>
+            </ol>
+        </nav>
+        <div class="row">
+            <div class="col-xl-12 col-md-12 col-sm-12">
+                <main class="card">
+                    <div class="row no-gutters">
+                        <aside class="col-sm-6 border-right">
+                                    <div>
+                                        <img src="{{ vich_uploader_asset(product,'imageFile')}}" />
+                                    </div>
+                                <!-- slider-product.// -->
+                            <!-- gallery-wrap .end// -->
+                        </aside>
+                        <aside class="col-sm-6">
+                            <article class="card-body">
+                                <!-- short-info-wrap -->
+                                <h3 class="title mb-3">{{product.name}}</h3>
+
+                                <div class="mb-3">
+                                    <var class="price h3 text-warning"> 
+										<span class="currency"style="color:#3d5290;">DZD  </span><span class="num" style="color:#3d5290;">{{product.price}}</span>
+									</var>
+                                    <span>/par {{product.measurement}}</span>
+                                </div>
+                                <!-- price-detail-wrap .// -->
+                                <dl>
+                                    <dt>Description</dt>
+                                    <dd>
+                                        <p>{{product.discription}} </p>
+                                    </dd>
+                                </dl>
+                                <dl class="row">
+                                    <dt class="col-sm-3">Model#</dt>
+                                    <dd class="col-sm-9">{{product.code}}</dd>
+
+                                    <dt class="col-sm-3">Catégorie</dt>
+                                    <dd class="col-sm-9">{{product.category.name}} </dd>
+
+                                    <dt class="col-sm-3">Quantity Available
+                                    </dt>
+                                    <dd class="col-sm-9">{{product.quantity}} </dd>
+                                </dl>
+                                <a href="javascript:void(0);" role="button" aria-disabled="true" id="AddToBasket" class="btn  btn-add {% if  not app.user or app.user.basket.productExistence(product) or product.state == 0%} btn-secondary disabled {% else %}btn-primary{% endif %}  ">Add to Basket
+                                </a>
+                                <br>{% if product.state == 0 %}<small class="text-muted">*Product is not available at the moment
+                            </small>{% endif %}
+                                <!-- short-info-wrap .// -->
+                            </article>
+                            <!-- card-body.// -->
+                        </aside>
+                        <!-- col.// -->
+                    </div>
+                    <!-- row.// -->
+                </main>
+                <!-- card.// -->
+            </div>
+            <!-- col // -->
+        </div>
+
+        
+    <article class="card mt-3">
+    	<div class="card-body">
+        <h4 class="title-text">Similar products
+        </h4>
+        <div class="slick-slider" data-slick='{"slidesToShow": 5, "slidesToScroll": 1}'>
+            {% for product_s in otherProduct %}
+                {% if product_s == product %}
+                {% else %}
+
+                    {% if loop.first %}
+            <div class="item-slide p-2">
+                <figure class="card card-product">
+                    <span class="badge-new"> New </span>
+                    <div class="img-wrap"> <img src="{{ vich_uploader_asset(product_s,'imageFile')| imagine_filter('product_list') }}"> </div>
+                    <figcaption class="info-wrap text-center">
+                        <h6 class="title text-truncate">
+                        <b><a class="color_text"  href="{{ path('productPage',{id: product_s.id}) }}">{{product_s.name}}</a></b>
+                        </h6>
+                    </figcaption>
+                </figure>
+                <!-- card // -->
+            </div>
+            {% else %}
+            <div class="item-slide p-2">
+                <figure class="card card-product">
+                    <div class="img-wrap"> <img src="{{ vich_uploader_asset(product_s,'imageFile')| imagine_filter('product_list') }}"> </div>
+                    <figcaption class="info-wrap text-center">
+                        <h6 class="title text-truncate">
+                            <b><a class="color_text"  href="{{ path('productPage',{id: product_s.id}) }}">{{product_s.name}}</a></b>
+
+                            </h6>
+                    </figcaption>
+                </figure>
+                <!-- card // -->
+            </div>
+            {% endif %}
+                {% endif %}
+
+            {% endfor %}
+        </div>
+                </div>
+
+    </article>
+</div>
+</section>
+
+
+
+
+
+{% endblock %} {% block javascripts %} {% endblock %}

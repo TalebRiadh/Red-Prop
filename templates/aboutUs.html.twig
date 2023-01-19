@@ -1,0 +1,142 @@
+{% extends 'security/home.html.twig' %}
+{% block title 'A propos de nous' %}
+{% block stylesheets %}
+    <link href="{{asset('css/carousel.css')}}" rel="stylesheet">
+
+{% endblock %}
+
+{% block body %}
+
+
+    <main role="main" class="container">
+
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="img-slide second-slide" src="{{asset('/images/bg/african-american-3541584_1920.jpg')}}" alt="Second slide">
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <!--<h1><b> Our Team  </b>
+                            </h1>
+                            <p></p>
+                                -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+            <!-- START THE FEATURETTES -->
+        <div class="row featurette">
+            <div class="col-md-7 order-md-2">
+                <h2 class="featurette-heading">Red Prop</h2>
+                <p class="lead">Food export company, grain and building materials</p>
+                <b>Objectives: Exporting Algerian products to the world</b>
+            </div>
+            <div class="col-md-5 order-md-1">
+                <img class="featurette-image img-fluid mx-auto" src="{{asset('/images/bg/red-prop.png')}}" alt="Generic placeholder image">
+            </div>
+        </div>
+
+            <hr class="featurette-divider">
+
+            <div class="row featurette">
+                <div class="col-md-7">
+                    <h2 class="featurette-heading">FEDDAOUI Haitem</h2>
+                    <p class="lead">DIRECTOR General Manager</p>
+                </div>
+                <div class="col-md-5">
+                    <img class="featurette-image img-fluid mx-auto" src="{{asset('/images/bg/949120.jpg')}}" alt="Generic placeholder image">
+                </div>
+            </div>
+
+            <hr class="featurette-divider">
+
+            <div class="row featurette">
+                <div class="col-md-7 order-md-2">
+                    <h2 class="featurette-heading">BELAHCEN Radjaa</h2>
+                    <p class="lead">Head of Coordination</p>
+                </div>
+                <div class="col-md-5 order-md-1">
+                    <img class="featurette-image img-fluid mx-auto" src="{{asset('/images/bg/leader2.jpg')}}" alt="Generic placeholder image">
+                </div>
+            </div>
+
+            <hr class="featurette-divider">
+
+            <div class="row featurette">
+                <div class="col-md-7">
+                    <h2 class="featurette-heading">FEDDAOUI Anis</h2>
+                    <p class="lead">In charge of external relations
+                    </p>
+                </div>
+                <div class="col-md-5">
+                    <img class="featurette-image img-fluid mx-auto" src="{{asset('/images/bg/anis.jpg')}}" alt="Generic placeholder image">
+                </div>
+            </div>
+
+            <hr class="featurette-divider">
+        <div class="row featurette">
+            <div class="col-md-7 order-md-2">
+                <h2 class="featurette-heading">DORGLI Kheireddine
+                </h2>
+                <p class="lead">In charge of electronic transactions
+
+                </p>
+            </div>
+            <div class="col-md-5 order-md-1">
+                <img class="featurette-image img-fluid mx-auto" src="{{asset('/images/bg/Kheireddine.jpg')}}" alt="Generic placeholder image">
+            </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">FADILI Redouane
+                </h2>
+                <p class="lead">human resources
+
+                </p>
+            </div>
+            <div class="col-md-5">
+                <img class="featurette-image img-fluid mx-auto" src="{{asset('/images/bg/Redouane.jpg')}}" alt="Generic placeholder image">
+            </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+            <div class="col-md-7 order-md-2">
+                <h2 class="featurette-heading">BENALI Omar
+                </h2>
+                <p class="lead">Chief Technical Service
+
+
+                </p>
+            </div>
+            <div class="col-md-5 order-md-1">
+                <img class="featurette-image img-fluid mx-auto" src="{{asset('/images/bg/Omar.jpg')}}" alt="Generic placeholder image">
+            </div>
+        </div>
+
+            <!-- /END THE FEATURETTES -->
+
+        </div><!-- /.container -->
+
+
+    </main>
+
+
+
+
+
+{% endblock %}
+{% block javascripts %}
+
+{% endblock %}

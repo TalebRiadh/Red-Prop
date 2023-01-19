@@ -1,0 +1,110 @@
+{% extends 'base.html.twig' %} {% block title 'Gestion des Produits' %} {% block stylesheets %} {% endblock %} {% block body %}
+
+
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+
+                <div class="container-fluid">
+                    <div class="py-5 text-center" style="margin:-20px;">
+                        <img class="d-block mx-auto mb-4" src="{{asset('images/logos/logo1.png')}}" alt="" width="300" height="100">
+                        <hr>
+                        <h2>Gestion de Produits</h2>
+                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ac massa eget velit sagittis sodales. Curabitur varius facilisis interdum. Nunc velit arcu, auctor hendrerit orci et, vulputate lacinia leo. Aenean non posuere libero. </p>
+                    </div>
+                    {% for message in app.flashes('success') %}
+                    <div class="alert alert-success" id="successMessage">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    {% endfor %}
+                    <div id="users">
+
+                        <div class="table-responsive">
+                            <div class="col-sm-12">
+                                <h5 class="card-title"><i class="fa fa-fw fa-search"></i> Cherche un Produit:</h5>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label>
+                                                <br>
+                                            </label>
+                                            <input class="search form-control" placeholder="Recherche" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-4" style="position:absolute; right:0;">
+                                        <div class="form-group">
+                                            <label>
+                                                <br>
+                                            </label>
+                                            <div style="position:absolute; right:15px;"><a id="edit_btn" href="{{ path('createProduct')}}" class="uk-button uk-button-primary"><i class="fas fa-plus"></i>  Ajouter Un Produit</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <table class="table   table-hover shadow p-3 mb-5 bg-white rounded">
+                                    <thead>
+                                        <tr>
+                                            <th style="text-align: center; vertical-align: middle;" scope="col">
+                                                <i class="sort fas fa-sort-numeric-down" data-sort="code" id="code"></i> Code
+                                            </th>
+                                            <th style="text-align: center; vertical-align: middle;" scope="col">Image</th>
+                                            <th style="text-align: center; vertical-align: middle;" scope="col">
+                                                <i class="sort fas fa-sort-alpha-down" data-sort="name"></i> Nom
+                                            </th>
+                                            <th style="text-align: center; vertical-align: middle;"  scope="col">
+                                            <i class="sort fas fa-sort" data-sort="category" ></i> Catégorie
+                                            </th>
+                                            <th style="text-align: center; vertical-align: middle;" scope="col">
+                                                <i class="sort fas fa-sort-numeric-down" data-sort="price"></i> Prix
+                                            </th>
+                                            <th style="text-align: center; vertical-align: middle;" scope="col">
+                                                <i class="sort fas fa-sort-numeric-down" data-sort="date"></i> Date D'ajout
+                                            </th>
+                                            <th style="text-align: center; vertical-align: middle;" scope="col">Disponibilité</th>
+                                            <th style="text-align: center; vertical-align: middle;" scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="list">
+                                        {% for product in products %}
+                                        <tr>
+                                            <th class="code" style="text-align: center; vertical-align: middle;" scope="row">{{product.code}}</th>
+                                            <td>
+                                                <img class="shadow p-1 img-fluid bg-white rounded" src="{{ vich_uploader_asset(product,'imageFile') }}" alt="" style="width:130px ; height: 110px">
+                                            </td>
+                                            <td class="name" style="text-align: center; vertical-align: middle;">{{product.name}}</td>
+                                            <td class="category" style="text-align: center; vertical-align: middle;">{{product.category.name}}</td>
+                                            <td class="price" style="text-align: center; vertical-align: middle;">{{product.price}} <strong>DZD</strong></td>
+                                            <td class="date" style="text-align: center; vertical-align: middle;">{{ product.createdAt|date('Y-m-d H:i') }}</td>
+                                            <td style="text-align: center; vertical-align: middle;">
+                                                {% if product.state == 0 %}
+                                                <span class="badge badge-pill badge-danger">Indisponible</span> {% elseif product.state == 1 %}
+                                                <span class="badge badge-pill badge-success">Disponible</span> {% endif %}
+                                            </td>
+                                            <td style="text-align: center; vertical-align: middle;">
+                                                <div class="btn-group" role="group" aria-label="Basic example">
+                                                    <a id="edit_btn" href="{{ path('product.edit',{id: product.id}) }}" class="uk-button uk-button-primary"><i class="fas fa-edit"
+                                        ></i>
+                                        Editer</a>
+                                                    <form method="post" action="{{ path('product.delete',{id: product.id}) }}" onsubmit="return confirm('Etes vous vraiment sur ?')">
+                                                        <input type="hidden" name="_method" value="DELETE">
+                                                        <input type="hidden" name="_token" value="{{ csrf_token('delete'~product.id) }}">
+                                                        <button class="uk-button uk-button-danger "><i class="fas fa-trash-alt"></i> Supprimer
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        </main>
+
+    {% endblock %} {% block javascripts %} {% endblock %}

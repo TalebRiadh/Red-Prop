@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+{% block title 'etat des Produits' %} 
+{% block stylesheets %} 
+{% endblock %} 
+{% block body %}
+
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+
+
+<div class="container-fluid">
+    <div class="py-5 text-center" style="margin:-20px;">
+        <img class="d-block mx-auto mb-4" src="{{asset('images/logos/logo1.png')}}" alt="" width="300" height="100">
+        <hr>
+        <h2>Etat des Produits</h2>
+    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ac massa eget velit sagittis sodales. Curabitur varius facilisis interdum. Nunc velit arcu, auctor hendrerit orci et, vulputate lacinia leo. Aenean non posuere libero. </p>
+    </div>
+    <div id="users">
+        <div class="table-responsive">
+            <div class="col-sm-12">
+                <h5 class="card-title"><i class="fa fa-fw fa-search"></i> Cherche un Produit:</h5>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label><br></label>
+                            <input class="search form-control" placeholder="Recherche" />
+                        </div>
+                    </div>
+                </div>
+                <table class="table   table-hover shadow p-3 mb-5 bg-white rounded">
+                    <thead>
+                        <tr>
+                            <th style="text-align: center; vertical-align: middle;" scope="col">
+                                <i class="sort fas fa-sort-numeric-down" data-sort="code" id="code"></i> Code
+                            </th>
+                            <th style="text-align: center; vertical-align: middle;" scope="col">Image</th>
+                            <th style="text-align: center; vertical-align: middle;" scope="col">
+                                <i class="sort fas fa-sort-alpha-down" data-sort="name"></i> Nom
+                            </th>
+                            <th style="text-align: center; vertical-align: middle;" scope="col">
+                                 <i class="sort fas fa-sort" data-sort="category" ></i> Catégorie
+                            </th>
+                            <th style="text-align: center; vertical-align: middle;" scope="col">
+                                <i class="sort fas fa-sort-numeric-down" data-sort="price"></i> Prix
+                            </th>
+                            <th style="text-align: center; vertical-align: middle;" scope="col">
+                                <i class="sort fas fa-sort-numeric-down" data-sort="date"></i> Date D'ajout
+                            </th>
+                            <th style="text-align: center; vertical-align: middle;" scope="col">Disponibilité</th>
+                        </tr>
+                    </thead>
+                    <tbody class="list">
+                        {% for product in products %}
+                        <tr>
+                            <th class="code" style="text-align: center; vertical-align: middle;" scope="row">{{product.code}}</th>
+                            <td>
+                                <img class="shadow p-1 img-fluid bg-white rounded" src="{{ vich_uploader_asset(product,'imageFile') }}" alt="" style="width:110px ; height: 100px">
+                            </td>
+                            <td class="name" style="text-align: center; vertical-align: middle;">{{product.name}}</td>
+                            <td class="category"  style="text-align: center; vertical-align: middle;">{{product.category.name}}</td>
+                            <td class="price" style="text-align: center; vertical-align: middle;">{{product.price}} <strong>DZD</strong></td>
+                            <td class="date" style="text-align: center; vertical-align: middle;">{{ product.createdAt|date('Y-m-d H:i') }}</td>
+                            <td style="text-align: center; vertical-align: middle;">
+                                <div class="outerDivFull">
+                                    <div class="switchToggle">
+                                        <div class="form-check">        
+                                            <input type="checkbox" id="{{product.name}}"  class="form-check-input " value="0" />
+                                            <label id="label_switch" class="form-check-label state" for="{{product.name}}">State</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+                    </div>
+
+        </main>
+
+    {% endblock %} {% block javascripts %} {% endblock %}

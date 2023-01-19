@@ -1,0 +1,39 @@
+{% extends 'security/home.html.twig' %} {% block title 'Liste des Produits' %} {% block stylesheets %} {% endblock %} {% block body %}
+
+
+<section class="section-content bg padding-y-sm">
+    <div class="container">
+        <div class="padding-y-sm">
+            <h3><b class="white">{{nbrProducts}} Results In
+                    "{{category.name}}"</b></h3>
+        </div>
+        <div class="row-sm">
+        {% for product in category.getProducts.toArray() %}
+            <div class="col-md-3 col-sm-6">
+                <figure class="card card-product">
+                    <a  href="{{ path('productPage',{id: product.id}) }}">
+                        <div class="img-wrap">
+                            <img src="{{ vich_uploader_asset(product,'imageFile')}}" style="width: 100%; height: 100%">
+                        </div>
+                    </a>
+                    <figcaption class="info-wrap text-center">
+                        <h6 class="title text-truncate">
+                            <b>
+                                <a class="color_text"  href="{{ path('productPage',{id: product.id}) }}">
+                                    {{product.name}}
+                                </a>
+                            </b>
+                        </h6>
+                    </figcaption>
+                </figure>
+                <!-- card // -->
+            </div>
+        {% endfor %}
+        </div>
+        <!-- row.// -->
+
+    </div>
+    <!-- container // -->
+</section>
+
+{% endblock %} {% block javascripts %} {% endblock %}
