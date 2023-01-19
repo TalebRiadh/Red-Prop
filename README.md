@@ -12,5 +12,4 @@ Red-Prop E-Commerce website build with Symfony(PHP) , mysql, html,css, js(ajax&a
 ![admin_etat_des_produits](https://user-images.githubusercontent.com/26094313/213483150-fc2bfebf-a4ef-4e9d-9579-12e6f5fdf9a4.PNG)
 ![admin_categories](https://user-images.githubusercontent.com/26094313/213483170-bf328ea5-1f27-45f7-8422-d36de4722c2b.PNG)
 ![order](https://user-images.githubusercontent.com/26094313/213483217-2c3a7c51-3beb-4177-ad3a-a81658f10ea7.PNG)
-![Uploading 67298648_650625295449544_1667061632905248768_n.png…]()
 ![basket](https://user-images.githubusercontent.com/26094313/213483274-f9ed1902-d975-4840-a689-b2b62dcb4912.PNG)
